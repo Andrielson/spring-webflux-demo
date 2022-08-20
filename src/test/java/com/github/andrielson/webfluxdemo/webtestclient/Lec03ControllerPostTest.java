@@ -14,7 +14,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 @WebFluxTest(ReactiveMathController.class)
-public class Let03ControllerPostTest {
+public class Lec03ControllerPostTest {
 
     @Autowired
     private WebTestClient webClient;
