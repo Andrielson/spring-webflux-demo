@@ -1,5 +1,6 @@
 package com.github.andrielson.webfluxdemo.webtestclient;
 
+import com.github.andrielson.webfluxdemo.controller.ParamsController;
 import com.github.andrielson.webfluxdemo.controller.ReactiveMathController;
 import com.github.andrielson.webfluxdemo.dto.Response;
 import com.github.andrielson.webfluxdemo.service.ReactiveMathService;
@@ -15,8 +16,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.Map;
 
-@WebFluxTest(ReactiveMathController.class)
+@WebFluxTest(controllers = {ReactiveMathController.class, ParamsController.class})
 public class Lec02ControllerGetTest {
 
     @Autowired
@@ -72,5 +74,18 @@ public class Lec02ControllerGetTest {
                 .expectHeader().contentTypeCompatibleWith(MediaType.TEXT_EVENT_STREAM)
                 .expectBodyList(Response.class)
                 .hasSize(3);
+    }
+
+    @Test
+    public void paramsTest() {
+        var map = Map.of("count", 10, "page", 20);
+
+        this.webClient
+                .get()
+                .uri(b -> b.path("/jobs/search").query("count={count}&page={page}").build(map))
+                .exchange()
+                .expectStatus().is2xxSuccessful()
+                .expectBodyList(Integer.class)
+                .hasSize(2).contains(10, 20);
     }
 }
