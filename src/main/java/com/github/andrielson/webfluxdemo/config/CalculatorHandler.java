@@ -11,19 +11,19 @@ import java.util.function.BiFunction;
 @Service
 public class CalculatorHandler {
     public Mono<ServerResponse> add(ServerRequest serverRequest) {
-        return process(serverRequest, (x, y) -> ServerResponse.ok().bodyValue(response(x + y)));
+        return process(serverRequest, (x, y) -> ServerResponse.ok().bodyValue(x + y));
     }
 
     public Mono<ServerResponse> subtract(ServerRequest serverRequest) {
-        return process(serverRequest, (x, y) -> ServerResponse.ok().bodyValue(response(x - y)));
+        return process(serverRequest, (x, y) -> ServerResponse.ok().bodyValue(x - y));
     }
 
     public Mono<ServerResponse> multiply(ServerRequest serverRequest) {
-        return process(serverRequest, (x, y) -> ServerResponse.ok().bodyValue(response(x * y)));
+        return process(serverRequest, (x, y) -> ServerResponse.ok().bodyValue(x * y));
     }
 
     public Mono<ServerResponse> divide(ServerRequest serverRequest) {
-        return process(serverRequest, (x, y) -> y != 0 ? ServerResponse.ok().bodyValue(response(x / y)) : ServerResponse.badRequest().bodyValue("y can not be 0"));
+        return process(serverRequest, (x, y) -> y != 0 ? ServerResponse.ok().bodyValue(x / y) : ServerResponse.badRequest().bodyValue("y can not be 0"));
     }
 
     private int getValue(ServerRequest serverRequest, String key) {
