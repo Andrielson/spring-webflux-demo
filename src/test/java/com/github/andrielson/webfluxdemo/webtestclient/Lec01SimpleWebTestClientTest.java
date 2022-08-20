@@ -1,6 +1,7 @@
 package com.github.andrielson.webfluxdemo.webtestclient;
 
 import com.github.andrielson.webfluxdemo.dto.Response;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import reactor.test.StepVerifier;
@@ -21,5 +22,17 @@ public class Lec01SimpleWebTestClientTest extends BaseTest {
         StepVerifier.create(responseFlux)
                 .expectNextMatches(response -> response.getOutput() == 25)
                 .verifyComplete();
+    }
+
+    @Test
+    public void fluentAssertionTest() {
+        this.webClient
+                .get()
+                .uri("/reactive-math/square/{number}", 5)
+                .exchange()
+                .expectStatus().is2xxSuccessful()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBody(Response.class)
+                .value(response -> Assertions.assertThat(response.getOutput()).isEqualTo(25));
     }
 }
