@@ -1,11 +1,9 @@
-package com.github.andrielson.webfluxdemo;
+package com.github.andrielson.webfluxdemo.webclient;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-
-import java.util.Objects;
 
 public class Lec09AssignmentTest extends BaseTest {
 

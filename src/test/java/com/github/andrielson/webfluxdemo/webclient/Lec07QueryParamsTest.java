@@ -1,4 +1,4 @@
-package com.github.andrielson.webfluxdemo;
+package com.github.andrielson.webfluxdemo.webclient;
 
 import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;

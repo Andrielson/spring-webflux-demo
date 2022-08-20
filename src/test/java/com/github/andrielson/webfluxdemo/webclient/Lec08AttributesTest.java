@@ -1,4 +1,4 @@
-package com.github.andrielson.webfluxdemo;
+package com.github.andrielson.webfluxdemo.webclient;
 
 import com.github.andrielson.webfluxdemo.dto.MultiplyRequestDto;
 import com.github.andrielson.webfluxdemo.dto.Response;

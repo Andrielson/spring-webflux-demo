@@ -1,4 +1,4 @@
-package com.github.andrielson.webfluxdemo;
+package com.github.andrielson.webfluxdemo.webclient;
 
 import com.github.andrielson.webfluxdemo.dto.Response;
 import org.junit.jupiter.api.Assertions;
